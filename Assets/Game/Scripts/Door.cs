@@ -4,16 +4,25 @@ using UnityEngine;
 public class Door : MonoBehaviour
 {
     [SerializeField] private GameObject doorModel;
+    
+    private bool isOpen = false;
 
-    private void OnTriggerEnter(Collider other)
+    public void Open()
     {
-        if (other.CompareTag("Player"))
-            doorModel.SetActive(false);
+        if (isOpen)
+            return;
+        
+       
+        doorModel.SetActive(false);
+        isOpen = true;
     }
-
-    private void OnTriggerExit(Collider other)
+    
+    public void Close()
     {
-        if (other.CompareTag("Player"))
-            doorModel.SetActive(true);
+        if (!isOpen)
+            return;
+        
+        doorModel.SetActive(true);
+        isOpen = false;
     }
 }
